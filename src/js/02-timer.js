@@ -1,6 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-import Notiflix from "notiflix";
+// import Notiflix from "notiflix";
 
 const inputEl = document.querySelector('#datetime-picker')
 const btnElStart = document.querySelector('button[data-start]');
@@ -16,29 +16,43 @@ let timerId = null;
 let currentDate;
 let selectDay;
 
-
-
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
+    console.log(selectedDates[0]);
+    console.log(options.defaultDate);
 
-  const startTime = Date.now();
-    selectDay = selectedDates[0]
-
-    if (selectDay < startTime) {
-      Notiflix.Notify.failure('Please choose a date in the future');
+    if (selectedDates[0] < options.defaultDate) {
+      alert(`Please choose a date in the future`);
+      return;
     }
-    if (selectDay > startTime) {
-      btnElStart.removeAttribute('disabled', 'true')
-      Notiflix.Notify.success('Great, you choose a date in the future!');
-    }
-   
-    currentDate = new Date(selectDay);
   },
 };
+
+// const options = {
+//   enableTime: true,
+//   time_24hr: true,
+//   defaultDate: new Date(),
+//   minuteIncrement: 1,
+//   onClose(selectedDates) {
+
+//   const startTime = Date.now();
+//     selectDay = selectedDates[0]
+
+//     if (selectDay < startTime) {
+//       Notiflix.Notify.failure('Please choose a date in the future');
+//     }
+//     if (selectDay > startTime) {
+//       btnElStart.removeAttribute('disabled', 'true')
+//       Notiflix.Notify.success('Great, you choose a date in the future!');
+//     }
+   
+//     currentDate = new Date(selectDay);
+//   },
+// };
 
 
 btnElStop.addEventListener('click', () => {
