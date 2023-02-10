@@ -28,10 +28,10 @@ const options = {
   const startTime = Date.now();
     selectDay = selectedDates[0]
 
-    if (selectedDates < startTime) {
+    if (selectedDates[0] < startTime) {
       Notiflix.Notify.failure('Please choose a date in the future');
     }
-    if (selectedDates > startTime) {
+    if (selectedDates[0] > startTime) {
       btnElStart.removeAttribute('disabled', 'true')
       Notiflix.Notify.success('Great, you choose a date in the future!');
     }
